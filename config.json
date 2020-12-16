@@ -1,0 +1,12 @@
+{
+    "firebase": {
+        "apiKey": "AIzaSyBrZ57d8RQAqv5S2jFBglzXAIhcBDZk8FE",
+        "authDomain": "food-tanny.firebaseapp.com",
+        "databaseURL": "https://food-tanny-default-rtdb.firebaseio.com",
+        "projectId": "food-tanny",
+        "storageBucket": "food-tanny.appspot.com",
+        "messagingSenderId": "9844138655",
+        "appId": "1:9844138655:web:5456cde976498539c938aa",
+        "measurementId": "G-YJX3VBRFJD"
+    }
+}
