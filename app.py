@@ -7,8 +7,8 @@ from firebase_admin import credentials, auth
 with open("config.json", encoding='utf 8') as json_file:
     data = json.load(json_file)
     config = data["firebase"]
-    firebase = pyrebase.initialize_app(config)
-    pb = pyrebase.initialize_app(config)
+    firebase = pyrebase.initialize_app(config) # database
+    pb = pyrebase.initialize_app(config) # ใช้ต่างกัน authen
     db = firebase.database()
 
 # db.child('food').set({'key' : 'value'})
@@ -43,7 +43,7 @@ def signup():
             data = {'firstname':firstname, 'lastname':lastname, 'email':user.email, 
                     'username':user.display_name, 'password':password, 'userToken':user.uid}
             db.child('food').push(data)
-            return redirect(url_for("login"))
+            return redirect(url_for("signup"))
         except:
             return render_template("signup.html")
 
