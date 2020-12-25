@@ -13,6 +13,7 @@ with open("config.json", encoding='utf 8') as json_file:
 
 # db.child('food').set({'key' : 'value'})
 
+
 cred = credentials.Certificate("loginjson.json")
 firebase_admin.initialize_app(cred)
 
