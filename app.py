@@ -45,7 +45,7 @@ def signup():
             db.child('food').push(data)
             return redirect(url_for("login"))
         except:
-            return render_template("login.html")
+            return render_template("signup.html")
 
 
 @app.route('/login', methods=['POST'])
