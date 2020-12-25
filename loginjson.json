@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "food-tanny",
+    "private_key_id": "f1cef5ef8039f38cc3a8fae2cf6c9a407032309f",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCR0ro17FR7RIHj\n9OwsEZNtN1CRlfaxauGW/3ENvn2wlO/1uDjZe1JMlJ2kJZXVsZREU24b2Z3ylZWM\n9iR9zFS7AzAyE0FYakh4HXcW0eEWI5gAnaDACKywW/nuFCmUnRHoSNXu2OrhmNk/\nPcn/FMX7Ewbo1GZFGDVlvRaSO+dunvjfgHkYVNVxpbXJa0isGwzZ/Th6NIaB6OGU\nwrJVn2S4Orc8z3ozMCTZ79bvhNa7wGd4db6yPcOB9666Mlvgi+JoNe6U1PPZN0F+\n0QCLdC8wCPC97NPnLWXl6iM10M3gJtZzF6RygtGDKhY7hyN+zL0/Jv1yANqmrZCD\noXuLh0GhAgMBAAECggEABpCkpoHVydjrOh6QNWmzJ/MaEvvb59/meRxV9Cbz1KvX\n48mf8ZaePWlhcX7psH22rZ7N8b4J4N6AJaD9Qpac5/B8TnzUb80VJyc4cdQQHKWM\nldaC4rJhR+1UIrZQquqpYDpLO14TsQVnHnRDMFM4mJWiNYA+fHTbDpIFPp8oy6+W\nHxc2vqd5dUsEj684P4yIXcYpTpLKmKPpCIsV97PcK7BCOizKXIp9BVwf/QjJ0dND\nFDZtEYULY/HfoUg4jhNiZaEClmzaXOA+aVRuj88e3OiRs96aRIPxvCwhR2wUUADB\n9XfL2Tf9eBIQxhoOeTQ5vWbTanNJAC8CtyVot+XH4QKBgQDIcFl0sgX8vOv3JzPt\nP+iouoZElN9Fy7x/ZkNeLZbN5VoMhCSoWKzfWKcTK3n7L4W1wjAXnGNefInxS7Wp\nw5vN+yeCRNA2OV7WsAmOGA7zEMEOiX9AayjnEX4/d0KucmY9TX2UU62wSq3m+aU8\nDHBft97LetGMBJdckUAZQZBgWQKBgQC6PrVej1QsPMZsy/gcfqdFVo7ZdJ3nWYIB\nZjvIAYZdr09i4r8pt7up0Yd3LpDV2tTMDCAlVUS7nRInLz+Vf40rjDaIeTGSvh36\nT4IsttbhzB9a0Ds9k6+eGTHC5jgTMA5uAU/Z+lGI0A97StV9e+5aLU0R4cegldoV\nZFXbIDsCiQKBgGtEfQtPrpaYgGuvhkGk3x1VXT/csDSJGSLRFqKTIU6lPHDQU1Ho\nyvNoXVmL/ebogtVHzDcGkcNiQOxqiRkGPx6YF4fGzesG/vNEGIj75Rw9ziO6f+h4\nsNYgbYEHkR8MyBxsmRVFRwG+pZyj48LkIUuIempJG1Wkq2B1t2kMxnhZAoGAZnk4\nW6Xq/0gVOSllA3CgYmNEx9sFQpSaFmEExYApSQS7XkI6Qh7or4As0+OYJ0J3USne\nygvHfJ7orQyvJHeA2hQUsTRVlVLrtZznl+imBKjGG7Z00eWffBKKsZzv/4ayec5Y\n/CthjzBDRGghXSDCPXWtcQhUSUQKMTj6kE2EilkCgYBLdMQBoN9pQhN2U7za1NwH\ngT4gBaWsGRvvqQc1kzfcaROZoh1i5E4RqXnPYTh7LtG/h2UDSoVWDa2ceJ2o4hfJ\n+gP92fszUfg1JyQezzrtklOmTE7DAfoP4zeHRM5RjB/RwA+7X9BryxGYlS17SxF4\nI5+S9/WN6dKREWwP31ataA==\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-hvrfj@food-tanny.iam.gserviceaccount.com",
+    "client_id": "102716414468535707757",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-hvrfj%40food-tanny.iam.gserviceaccount.com"
+  }
+  
