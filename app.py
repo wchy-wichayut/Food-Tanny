@@ -22,9 +22,9 @@ app = Flask(__name__)
 
 
 @app.route('/')
-@app.route('/test')
+@app.route('/homepage')
 def test():
-    return render_template('test.html')
+    return render_template('/main/welcome.html')
 
 
 
@@ -37,7 +37,7 @@ def signup():
         lastname = request.form['lastname']
         email = request.form['email']
         username = request.form['username']
-        password = request.form['password']
+        password = request.form['pword']
 
         try:
             user = auth.create_user(email=email, password=password, display_name=username)
@@ -76,6 +76,7 @@ def getapi():
 
 
 if __name__ == '__main__':
+<<<<<<< Updated upstream
     app.run(debug=True, port=8080)
 
 # keyword = str(input("Enter Keyword :"))
@@ -92,3 +93,6 @@ if __name__ == '__main__':
 
 # with open("com_code.json", "w") as com_file:
 #     json.dump(lst, com_file)
+=======
+    app.run(debug=True, port=5515)
+>>>>>>> Stashed changes

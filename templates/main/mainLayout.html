@@ -76,7 +76,8 @@
     <div id="wrapper">
         <nav class="navbar navbar-expand-sm navbar-dark fixed-top" id="layoutMain">
             <a class="navbar-brand" href="/index">
-                <img src="{{ url_for('static',filename='images/fried-chicken.png') }}" width="90" height="70" style="margin-left: 50px;">
+                <img src="{{ url_for('static',filename='images/fried-chicken.png') }}" width="90" height="70"
+                    style="margin-left: 50px;">
             </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
@@ -85,6 +86,7 @@
             </button>
             <div class="navbar-nav navbar-expand" id="navbarResponsive">
                 <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+                    <span class="nav-link-text text-white">Nong Kai!</span>
                     <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                         <a class="nav-link" href="/index">
                             <i class="fa fa-fw fa-user"></i>
@@ -96,7 +98,8 @@
                         <i class="text-white fa fa-fw fa-user-circle" style="text-align: end; "></i>
                         <span class="nav-link-text text-white">{{ g.user }}</span>
                     </li> -->
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Login" style="margin-left: 1200px">
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Login"
+                        style="margin-left: 1000px">
                         <a class="nav-link" href="/logout">
                             <!-- <i class="fa fa-fw fa-sign-out"></i> -->
                             <span class="nav-link-text text-white">Login</span>
@@ -122,6 +125,10 @@
 <style>
     #layoutMain {
         background-color: #c9c7c6;
+    }
+
+    #navbarResponsive {
+        font-family: "Prompt-medium", sans-serif;
     }
 </style>
 

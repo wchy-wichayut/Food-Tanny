@@ -1,0 +1,19 @@
+{% extends "/main/mainLayout.html" %}
+{% block content %}
+<div id="app">
+    <v-app id="inspire">
+        
+    </v-app>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        vuetify: new vuetify(),
+        data: () => ({
+
+        })
+    })
+</script>
+
+{% endblock %}

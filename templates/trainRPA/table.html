@@ -1,0 +1,99 @@
+{% extends "/main/mainLayout.html" %}
+{% block content %}
+<div id="app">
+    <v-app id="inspire">
+        <v-row justify="center">
+            <template>
+                <div>
+                    <v-dialog v-model="dialog" persistent max-width="600px">
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                                Search
+                            </v-btn>
+                        </template>
+                        <v-card>
+                            <v-card-title>
+                                <span class="headline">User Profile</span>
+                            </v-card-title>
+                            <v-card-text>
+                                <v-container>
+                                    <v-row>
+                                        <v-col cols='6' md='6'>
+                                            <v-text-field label="1" ></v-text-field>
+                                        </v-col>
+                                        <v-col cols='6' md='6'>
+                                            <v-text-field label="2"></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols='6' md='6'>
+                                            <v-text-field label="3"></v-text-field>
+                                        </v-col>
+                                        <v-col cols='6' md='6'>
+                                            <v-text-field label="4"></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                </v-container>
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="blue darken-1" text @click="dialog = false">
+                                    Close
+                                </v-btn>
+                                <v-btn color="blue darken-1" text @click="dialog = false">
+                                    Save
+                                </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
+                    <v-data-table :headers="headers" :items="products" class="elevation-2">
+                        <!-- <template v-slot:top>
+                            <v-text-field v-model="search" label="Search" class="mx-4"></v-text-field>
+                        </template> -->
+                    </v-data-table>
+                </div>
+            </template>
+        </v-row>
+    </v-app>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        vuetify: new vuetify(),
+        data: () => ({
+            headers: [],
+            items: [],
+            search: '',
+            dialog: ''
+        }),
+        methods: {
+            createTable() {
+                const path = 'getapi';
+                axios.get(path)
+                    .then((res) => {
+                        let response = this.items = res.data.ref;
+                        console.log(response)
+                    })
+                    .catch((err) => {
+                        console.error(err)
+                    })
+            },
+            onShow(){
+                
+            }
+        },
+        delimiters: ["[[", "]]"]
+    })
+</script>
+
+{% endblock %}
+
+<!-- :search="search" :custom-filter="filter" -->
+
+<!-- filter(value, search, item) {
+return value != null &&
+search != null &&
+typeof value === 'string' &&
+value.toString().indexOf(search) !== -1
+} -->
