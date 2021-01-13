@@ -3,6 +3,7 @@ import json
 import pyrebase
 import firebase_admin
 from firebase_admin import credentials, auth
+import requests
 
 with open("config.json", encoding='utf 8') as json_file:
     data = json.load(json_file)
@@ -56,5 +57,38 @@ def login():
         pb.auth().sign_in_with_email_and_password(email, password)
         return redirect(url_for("test"))
 
+@app.route('/getapi')
+def getapi():
+    lst = []
+    url = "https://dataapi.moc.go.th/Products"
+    response = requests.get(url, verify=False)
+    texts = response.json()
+    for i in texts:
+        group = {'revision':i['revision'], 'hs_code':i['hs_code'], 'com_code': i['com_code'], 
+                'imex_type':i['type'], 'com_description_en':i['com_description_en'], 'com_description_th':i['com_description_th'], 
+                'unit_code':i['unit_code'], 'unit':i['unit'], 'unit2en':i['unit2en'], 'unit2th':i['unit2th']}
+        lst.append(group)
+    data = {
+        'ref':lst
+    }
+    
+    return jsonify(data)
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
+
+# keyword = str(input("Enter Keyword :"))
+# url = f"https://dataapi.moc.go.th/products?keyword={keyword}"
+# response = requests.get(url, verify=False)
+# texts = response.json()
+
+# lst = []
+# for i in texts:
+#     print(i['com_code'], i['hs_description_th'], i["com_description_th"])
+#     group = {'com_code': i['com_code'], 'hs_description_th':i['hs_description_th'], 
+#             "com_description_th":i["com_description_th"]}
+#     lst.append(group)
+
+# with open("com_code.json", "w") as com_file:
+#     json.dump(lst, com_file)
