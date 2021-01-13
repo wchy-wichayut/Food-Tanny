@@ -56,6 +56,7 @@ def login():
         password = request.form['password']
         pb.auth().sign_in_with_email_and_password(email, password)
         return redirect(url_for("test"))
+#---------------------Food-Tanny------------------------#
 
 
 @app.route('/getapi')
@@ -75,6 +76,10 @@ def getapi():
     
     return jsonify(data)
 
+@app.route('/tbproduct')
+def tbproduct():
+    return render_template('table.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
+
