@@ -78,7 +78,7 @@ def getapi():
 
 @app.route('/tbproduct')
 def tbproduct():
-    return render_template('table.html')
+    return render_template('/trainRPA/table.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
