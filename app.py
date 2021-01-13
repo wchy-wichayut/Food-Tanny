@@ -57,6 +57,7 @@ def login():
         pb.auth().sign_in_with_email_and_password(email, password)
         return redirect(url_for("test"))
 
+
 @app.route('/getapi')
 def getapi():
     lst = []
@@ -76,23 +77,4 @@ def getapi():
 
 
 if __name__ == '__main__':
-<<<<<<< Updated upstream
     app.run(debug=True, port=8080)
-
-# keyword = str(input("Enter Keyword :"))
-# url = f"https://dataapi.moc.go.th/products?keyword={keyword}"
-# response = requests.get(url, verify=False)
-# texts = response.json()
-
-# lst = []
-# for i in texts:
-#     print(i['com_code'], i['hs_description_th'], i["com_description_th"])
-#     group = {'com_code': i['com_code'], 'hs_description_th':i['hs_description_th'], 
-#             "com_description_th":i["com_description_th"]}
-#     lst.append(group)
-
-# with open("com_code.json", "w") as com_file:
-#     json.dump(lst, com_file)
-=======
-    app.run(debug=True, port=5515)
->>>>>>> Stashed changes
