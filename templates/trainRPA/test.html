@@ -1,0 +1,69 @@
+{% extends "/main/mainLayout.html" %}
+{% block content %}
+<br><br><br><br><br>
+<div id="app">
+    <v-app id="inspire">
+        <v-row justify="center">
+            <template>
+                <div>
+                    <v-text-field
+                        type="text"
+                        label="Keyword"
+                        v-model="keyword"
+                        name="keyword"
+                        dense
+                        required
+                        outlined
+                    ></v-text-field>
+                    <v-btn 
+                            color="success" 
+                            @click='pushData'
+                            >submit</v-btn>
+                </div>
+            </template>
+        </v-row>
+    </v-app>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        vuetify: new Vuetify(),
+        data: () => ({
+            keyword: '',
+            revision: '',
+            imex_type: '',
+            order_by: ''
+        }),
+        methods: {
+            pushData(data) {
+                let group = {keyword: this.keyword, revision:this.revision, 
+                            imex_type:this.imex_type, order_by:this.order_by}
+                this.createTable(group)
+                console.log(group)      
+            },
+            createTable(data){
+                const path = '/getapi';
+                axios.post(path, data)
+                    .then((res) => {
+                        console.log("Succes")
+                    })
+                    .catch((err) => {
+                        console.error(err)
+                    })
+            }
+        },
+        delimiters: ["[[", "]]"]
+    })
+</script>
+
+{% endblock %}
+
+<!-- :search="search" :custom-filter="filter" -->
+
+<!-- filter(value, search, item) {
+return value != null &&
+search != null &&
+typeof value === 'string' &&
+value.toString().indexOf(search) !== -1
+} -->
