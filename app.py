@@ -66,13 +66,12 @@ def getapi():
         event = request.get_json()
         print("CheckData :",event)
         
-        
         keyword = event['keyword']
         revision = event['revision']
         imex_type = event['imex_type']
         order_by = event['order_by']
 
-        url = f"https://dataapi.moc.go.th/products?keyword={keyword}"
+        url = f"https://dataapi.moc.go.th/products?keyword={keyword}revision={revision}&imex_type={imex_type}&order_by={order_by}"
         response = requests.get(url, verify=False)
         texts = response.json()
         lst = []
