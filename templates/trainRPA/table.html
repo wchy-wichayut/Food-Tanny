@@ -94,7 +94,7 @@
                 console.log(dict)
             },
             onClick(data) {
-                const path = '/getjson';
+                const path = '/getapi';
                 axios.post(path, data)
                     .then(() => {
                         console.log('Selected Sorting')
