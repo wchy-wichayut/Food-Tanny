@@ -60,47 +60,40 @@ def login():
 #---------------------Food-Tanny------------------------#
 
 
-@app.route("/getjson", methods=["GET", "POST"])
-def getjson():
-  if request.method == "POST":
-    receive = request.get_json()
-    print(receive)
-    
-    
-    lst = []
-    url = "https://dataapi.moc.go.th/Products"
-    response = requests.get(url, verify=False)
-    texts = response.json()
-    for i in texts:
-        group = {'revision': i['revision'], 'hs_code': i['hs_code'], 'com_code': i['com_code'],
-                 'imex_type': i['type'], 'com_description_en': i['com_description_en'], 'com_description_th': i['com_description_th'],
-                 'unit_code': i['unit_code'], 'unit': i['unit'], 'unit2en': i['unit2en'], 'unit2th': i['unit2th']}
-        lst.append(group)
-    data = {
-        'ref': lst
-    }
-    return jsonify(data)
+@app.route('/getapi', methods=['GET',"POST"])
+def getapi():
+    if request.method == 'POST':
+        event = request.get_json()
+        print("CheckData :",event)
+        
+        
+        keyword = event['keyword']
+        revision = event['revision']
+        imex_type = event['imex_type']
+        order_by = event['order_by']
 
-
-# @app.route('/getapi')
-# def getapi():
-#     lst = []
-#     url = "https://dataapi.moc.go.th/Products"
-#     response = requests.get(url, verify=False)
-#     texts = response.json()
-#     for i in texts:
-#         group = {'revision':i['revision'], 'hs_code':i['hs_code'], 'com_code': i['com_code'], 
-#                 'imex_type':i['type'], 'com_description_en':i['com_description_en'], 'com_description_th':i['com_description_th'], 
-#                 'unit_code':i['unit_code'], 'unit':i['unit'], 'unit2en':i['unit2en'], 'unit2th':i['unit2th']}
-#         lst.append(group)
-#     data = {
-#         'ref':lst
-#     }
-#     return jsonify(data)
+        url = f"https://dataapi.moc.go.th/products?keyword={keyword}"
+        response = requests.get(url, verify=False)
+        texts = response.json()
+        lst = []
+        for i in texts:
+            group = {'revision':i['revision'], 'hs_code':i['hs_code'], 'com_code': i['com_code'], 
+                    'imex_type':i['type'], 'com_description_en':i['com_description_en'], 'com_description_th':i['com_description_th'], 
+                    'unit_code':i['unit_code'], 'unit':i['unit'], 'unit2en':i['unit2en'], 'unit2th':i['unit2th']}
+            lst.append(group)
+        
+        data = {
+            'ref':lst
+        }
+        print(data)
+        return jsonify(data)
+    else:
+        return render_template('/trainRPA/table.html')
+    
 
 @app.route('/tbproduct')
 def tbproduct():
-    return render_template('/trainRPA/table.html')
+    return render_template('/trainRPA/test.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
