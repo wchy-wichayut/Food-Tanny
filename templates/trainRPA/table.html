@@ -31,11 +31,11 @@
                                     </v-row>
                                     <v-row>
                                         <v-col cols='6' md='6'>
-                                            <v-select :items='impexp' v-model="imex" label="รูปแบบการนำเข้าหรือส่งออก">
+                                            <v-select :items='impexp' v-model="imex_type" label="รูปแบบการนำเข้าหรือส่งออก">
                                             </v-select>
                                         </v-col>
                                         <v-col cols='6' md='6'>
-                                            <v-select :items='order' v-model="orderBy"
+                                            <v-select :items='order' v-model="order_by"
                                                 label="รูปแบบการเรียงลำดับข้อมูลส่งออก">
                                             </v-select>
                                         </v-col>
@@ -53,8 +53,10 @@
                             </v-card-actions>
                         </v-card>
                     </v-dialog>
+                    
                     <v-data-table :headers="headers" :items="products" class="elevation-4">
                     </v-data-table>
+                   
                 </div>
             </template>
         </v-row>
@@ -82,21 +84,22 @@
             order: ['hs_code', 'com_code'],
             keyword: '',
             revision: '',
-            imex: '',
-            orderBy: '',
+            imex_type: '',
+            order_by: '',
             products: [],
             dialog: false
         }),
         methods: {
             validate() {
-                let dict = { keyword: this.keyword, revision: this.revision, imex: this.imex, orderBy: this.orderBy }
+                let dict = { keyword: this.keyword, revision: this.revision, imex_type: this.imex_type, order_by: this.order_by }
                 this.onClick(dict)
                 console.log(dict)
             },
             onClick(data) {
                 const path = '/getapi';
                 axios.post(path, data)
-                    .then(() => {
+                    .then((res) => {
+                        let response = this.products = res.data.ref;
                         console.log('Selected Sorting')
                     })
                     .catch((err) => {

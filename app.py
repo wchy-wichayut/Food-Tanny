@@ -71,7 +71,7 @@ def getapi():
         imex_type = event['imex_type']
         order_by = event['order_by']
 
-        url = f"https://dataapi.moc.go.th/products?keyword={keyword}revision={revision}&imex_type={imex_type}&order_by={order_by}"
+        url = f"https://dataapi.moc.go.th/products?&keyword={keyword}&revision={revision}&imex_type={imex_type}&order_by={order_by}"
         response = requests.get(url, verify=False)
         texts = response.json()
         lst = []
@@ -92,7 +92,7 @@ def getapi():
 
 @app.route('/tbproduct')
 def tbproduct():
-    return render_template('/trainRPA/test.html')
+    return render_template('/trainRPA/table.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
