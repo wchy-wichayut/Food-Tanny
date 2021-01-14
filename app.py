@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request, redirect, url_for
+from flask import Flask, render_template, jsonify, request, redirect, url_for, make_response
 import json
 import pyrebase
 import firebase_admin
@@ -56,25 +56,47 @@ def login():
         password = request.form['password']
         pb.auth().sign_in_with_email_and_password(email, password)
         return redirect(url_for("test"))
+
 #---------------------Food-Tanny------------------------#
 
 
-@app.route('/getapi')
-def getapi():
+@app.route("/getjson", methods=["GET", "POST"])
+def getjson():
+  if request.method == "POST":
+    receive = request.get_json()
+    print(receive)
+    
+    
     lst = []
     url = "https://dataapi.moc.go.th/Products"
     response = requests.get(url, verify=False)
     texts = response.json()
     for i in texts:
-        group = {'revision':i['revision'], 'hs_code':i['hs_code'], 'com_code': i['com_code'], 
-                'imex_type':i['type'], 'com_description_en':i['com_description_en'], 'com_description_th':i['com_description_th'], 
-                'unit_code':i['unit_code'], 'unit':i['unit'], 'unit2en':i['unit2en'], 'unit2th':i['unit2th']}
+        group = {'revision': i['revision'], 'hs_code': i['hs_code'], 'com_code': i['com_code'],
+                 'imex_type': i['type'], 'com_description_en': i['com_description_en'], 'com_description_th': i['com_description_th'],
+                 'unit_code': i['unit_code'], 'unit': i['unit'], 'unit2en': i['unit2en'], 'unit2th': i['unit2th']}
         lst.append(group)
     data = {
-        'ref':lst
+        'ref': lst
     }
-    
     return jsonify(data)
+
+
+# @app.route('/getapi')
+# def getapi():
+#     lst = []
+#     url = "https://dataapi.moc.go.th/Products"
+#     response = requests.get(url, verify=False)
+#     texts = response.json()
+#     for i in texts:
+#         group = {'revision':i['revision'], 'hs_code':i['hs_code'], 'com_code': i['com_code'], 
+#                 'imex_type':i['type'], 'com_description_en':i['com_description_en'], 'com_description_th':i['com_description_th'], 
+#                 'unit_code':i['unit_code'], 'unit':i['unit'], 'unit2en':i['unit2en'], 'unit2th':i['unit2th']}
+#         lst.append(group)
+#     data = {
+#         'ref':lst
+#     }
+#     return jsonify(data)
 
 @app.route('/tbproduct')
 def tbproduct():

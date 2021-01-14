@@ -6,7 +6,7 @@
         <v-row justify="center">
             <template>
                 <div>
-                    <v-dialog v-model="dialog" persistent max-width="600px">
+                    <v-dialog v-model="dialog" persistent max-width="600px" ref='form'>
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn color="primary" dark v-bind="attrs" v-on="on">
                                 Search
@@ -14,24 +14,30 @@
                         </template>
                         <v-card>
                             <v-card-title>
-                                <span class="headline">User Profile</span>
+                                <span class="headline">Sorting</span>
                             </v-card-title>
                             <v-card-text>
                                 <v-container>
                                     <v-row>
                                         <v-col cols='6' md='6'>
-                                            <v-text-field label="1"></v-text-field>
+                                            <v-text-field v-model="keyword" label="คำค้น" type="text">
+                                            </v-text-field>
                                         </v-col>
                                         <v-col cols='6' md='6'>
-                                            <v-text-field label="2"></v-text-field>
+                                            <v-text-field v-model="revision" label="ปีฐานข้อมูล" type='text'>
+                                            </v-text-field>
+                                            </v-text-field>
                                         </v-col>
                                     </v-row>
                                     <v-row>
                                         <v-col cols='6' md='6'>
-                                            <v-text-field label="3"></v-text-field>
+                                            <v-select :items='impexp' v-model="imex" label="รูปแบบการนำเข้าหรือส่งออก">
+                                            </v-select>
                                         </v-col>
                                         <v-col cols='6' md='6'>
-                                            <v-text-field label="4"></v-text-field>
+                                            <v-select :items='order' v-model="orderBy"
+                                                label="รูปแบบการเรียงลำดับข้อมูลส่งออก">
+                                            </v-select>
                                         </v-col>
                                     </v-row>
                                 </v-container>
@@ -41,16 +47,13 @@
                                 <v-btn color="blue darken-1" text @click="dialog = false">
                                     Close
                                 </v-btn>
-                                <v-btn color="blue darken-1" text @click="dialog = false">
+                                <v-btn color="blue darken-1" text @click="validate">
                                     Save
                                 </v-btn>
                             </v-card-actions>
                         </v-card>
                     </v-dialog>
-                    <v-data-table :headers="headers" :items="products" sort-by="index" class="elevation-2">
-                        <!-- <template v-slot:top>
-                            <v-text-field v-model="search" label="Search" class="mx-4"></v-text-field>
-                        </template> -->
+                    <v-data-table :headers="headers" :items="products" class="elevation-4">
                     </v-data-table>
                 </div>
             </template>
@@ -64,39 +67,42 @@
         vuetify: new Vuetify(),
         data: () => ({
             headers: [
-                { text: 'Index', value: 'index' },
-                { text: '1', value: '1' },
-                { text: '2', value: '2' },
-                { text: '3', value: '3' },
-                { text: '4', value: '4' },
-                { text: '5', value: '5' },
-                { text: '6', value: '6' },
-                { text: '7', value: '7' },
-                { text: '8', value: '8' },
-                { text: '9', value: '9' },
-                { text: '10', value: '10' },
+                { text: 'com_code', value: 'com_code' },
+                { text: 'com_description_en', value: 'com_description_en' },
+                { text: 'com_description_th', value: 'com_description_th' },
+                { text: 'hs_code', value: 'hs_code' },
+                { text: 'imex_type', value: 'imex_type' },
+                { text: 'revision', value: 'revision' },
+                { text: 'unit', value: 'unit' },
+                { text: 'unit2en', value: 'unit2en' },
+                { text: 'unit2th', value: 'unit2th' },
+                { text: 'unit_code', value: 'unit_code' },
             ],
+            impexp: ['import', 'export'],
+            order: ['hs_code', 'com_code'],
+            keyword: '',
+            revision: '',
+            imex: '',
+            orderBy: '',
             products: [],
             dialog: false
         }),
-        created() {
-            this.createTable()
-        },
         methods: {
-            createTable() {
-                const path = '/getapi';
-                axios.get(path)
-                    .then((res) => {
-                        let response = this.products = res.data.ref;
-                        console.log(response)
+            validate() {
+                let dict = { keyword: this.keyword, revision: this.revision, imex: this.imex, orderBy: this.orderBy }
+                this.onClick(dict)
+                console.log(dict)
+            },
+            onClick(data) {
+                const path = '/getjson';
+                axios.post(path, data)
+                    .then(() => {
+                        console.log('Selected Sorting')
                     })
                     .catch((err) => {
                         console.error(err)
                     })
             },
-            onShow() {
-
-            }
         },
         delimiters: ["[[", "]]"]
     })
@@ -104,11 +110,30 @@
 
 {% endblock %}
 
-<!-- :search="search" :custom-filter="filter" -->
+<!-- validate() {
+let set = this.$refs.form.validate()
+if (set === true) {
+this.keyword = keyword
+this.revision = revision
+this.imex = imex
+this.orderBy = orderBy
 
-<!-- filter(value, search, item) {
-return value != null &&
-search != null &&
-typeof value === 'string' &&
-value.toString().indexOf(search) !== -1
-} -->
+let dict = { keyword: this.keyword, revision: this.revision, imex: this.imex, orderBy: this.orderBy }
+this.onClick(dict)
+console.log(dict)
+} else {
+console.log('error')
+}
+}, -->
+
+<!-- createTable() {
+const path = '/getapi';
+axios.get(path)
+.then((res) => {
+let response = this.products = res.data.ref;
+console.log(response)
+})
+.catch((err) => {
+console.error(err)
+})
+}, -->
